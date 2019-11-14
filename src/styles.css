@@ -4,3 +4,8 @@ body {
   background: linear-gradient(to left, #ffaf7b, #d76d77, #3a1c71);
   height: 100vh;
 }
+
+h1,
+label {
+  color: #ffffff;
+}
