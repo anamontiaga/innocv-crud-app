@@ -18,4 +18,16 @@ export class EmployeesService {
       })
     );
   }
+  updateEmployee(employee: EmployeeModel) {
+    const employeeTemp = {
+      ...employee
+    };
+
+    delete employeeTemp.id;
+
+    return this.http.put(
+      `${this.url}/employees/${employee.id}.json`,
+      employeeTemp
+    );
+  }
 }

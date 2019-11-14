@@ -21,8 +21,15 @@ export class EmployeeComponent implements OnInit {
       return;
     }
 
-    this.employeesService.createEmployee(this.employee).subscribe(resp => {
-      console.log(resp);
-    });
+    if (this.employee.id) {
+      this.employeesService.updateEmployee(this.employee).subscribe(resp => {
+        console.log(resp);
+      });
+    } else {
+      this.employeesService.createEmployee(this.employee).subscribe(resp => {
+        console.log(resp);
+        this.employee = resp;
+      });
+    }
   }
 }
