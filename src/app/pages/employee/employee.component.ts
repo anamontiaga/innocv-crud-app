@@ -3,6 +3,10 @@ import { EmployeeModel } from "src/app/models/employee.model";
 import { NgForm } from "@angular/forms";
 import { EmployeesService } from "src/app/services/employees.service";
 
+import { Observable } from "rxjs";
+import Swal from "sweetalert2";
+import { prepareSyntheticListenerFunctionName } from "@angular/compiler/src/render3/util";
+
 @Component({
   selector: "app-employee",
   templateUrl: "./employee.component.html",
@@ -21,15 +25,28 @@ export class EmployeeComponent implements OnInit {
       return;
     }
 
+    Swal.fire({
+      title: "Wait",
+      text: "Saving information",
+      type: "info",
+      allowOutsideClick: false
+    });
+    Swal.showLoading();
+
+    let peticion: Observable<any>;
+
     if (this.employee.id) {
-      this.employeesService.updateEmployee(this.employee).subscribe(resp => {
-        console.log(resp);
-      });
+      peticion = this.employeesService.updateEmployee(this.employee);
     } else {
-      this.employeesService.createEmployee(this.employee).subscribe(resp => {
-        console.log(resp);
-        this.employee = resp;
-      });
+      peticion = this.employeesService.createEmployee(this.employee);
     }
+
+    peticion.subscribe(resp => {
+      Swal.fire({
+        title: this.employee.name,
+        text: "Update correctly",
+        type: "sucess"
+      });
+    });
   }
 }
