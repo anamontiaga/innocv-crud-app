@@ -1,1 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  background: #3a1c71;
+  background: -webkit-linear-gradient(to left, #ffaf7b, #d76d77, #3a1c71);
+  background: linear-gradient(to left, #ffaf7b, #d76d77, #3a1c71);
+  height: 100vh;
+}
