@@ -1,15 +1,18 @@
-<h1>Listado de empleados</h1>
+<h1>List of employees</h1>
 
 <hr />
 <div class="row">
-  <div class="col">
+  <div class="col text-right">
     <button routerLink="/employee/nuevo" class="btn btn-primary">
-      <i class="fa fa-plus"> Agregar</i>
+      <i class="fa fa-plus"> Add</i>
     </button>
   </div>
 </div>
 
-<table class="table mt-3 animated fadeIn slower">
+<table
+  *ngIf="!cargando && employees.length > 0"
+  class="table mt-3 animated fadeIn faster animated fadeIn faster"
+>
   <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
@@ -18,18 +21,32 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
+    <tr *ngFor="let employee of employees; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ employee.name }}</td>
+      <td>{{ employee.birthdate }}</td>
+      <td>
+        <button
+          class="btn btn-info mr-1"
+          [routerLink]="['/employee', employee.id]"
+        >
+          <i class="fa fa-pen"></i>
+        </button>
+
+        <button class="btn btn-danger" (click)="borrarEmployee(employee, i)">
+          <i class="fa fa-trash"></i>
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>
 
 <!-- SERVE ERROR HANDLING -->
-
-<div class="alert alert-warning text-center mt-3">
-  <h4 class="alert-heading">No hay registros</h4>
+<div
+  *ngIf="!cargando && employees.length === 0"
+  class="alert alert-warning text-center mt-3 animated fadeIn faster"
+>
+  <h4 class="alert-heading">No records</h4>
   <p>
     <i class="fa fa-exclamation fa-2x"></i>
   </p>
@@ -37,10 +54,13 @@
 
 <!-- SERVER LOADING ICON -->
 
-<div class="alert alert-info text-center mt-3">
-  <h4 class="alert-heading">Cargando</h4>
+<div
+  *ngIf="cargando"
+  class="alert alert-info text-center mt-3 animated fadeIn faster"
+>
+  <h4 class="alert-heading">Loading</h4>
   <p>
     <i class="fa fa-sync-alt fa-spin fa-2x"></i>
   </p>
-  <p class="mb-0">Espere por favor</p>
+  <p class="mb-0">Wait, please</p>
 </div>

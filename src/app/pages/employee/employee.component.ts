@@ -1,11 +1,12 @@
 import { Component, OnInit } from "@angular/core";
-import { EmployeeModel } from "src/app/models/employee.model";
+import { ActivatedRoute } from "@angular/router";
+import { Observable } from "rxjs";
 import { NgForm } from "@angular/forms";
+
+import { EmployeeModel } from "src/app/models/employee.model";
 import { EmployeesService } from "src/app/services/employees.service";
 
-import { Observable } from "rxjs";
 import Swal from "sweetalert2";
-import { prepareSyntheticListenerFunctionName } from "@angular/compiler/src/render3/util";
 
 @Component({
   selector: "app-employee",
@@ -13,11 +14,22 @@ import { prepareSyntheticListenerFunctionName } from "@angular/compiler/src/rend
   styleUrls: ["./employee.component.css"]
 })
 export class EmployeeComponent implements OnInit {
-  employee = new EmployeeModel();
+  employee: EmployeeModel = new EmployeeModel();
 
-  constructor(private employeesService: EmployeesService) {}
+  constructor(
+    private employeesService: EmployeesService,
+    private route: ActivatedRoute
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    const id = this.route.snapshot.paramMap.get("id");
+    if (id !== "nuevo") {
+      this.employeesService.getEmployee(id).subscribe((resp: EmployeeModel) => {
+        this.employee = resp;
+        this.employee.id = id;
+      });
+    }
+  }
 
   guardar(form: NgForm) {
     if (form.invalid) {

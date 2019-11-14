@@ -1,10 +1,10 @@
-<h1>Empleado <small>Nombre del empleado</small></h1>
+<h1>Employee <small>Name of employee</small></h1>
 
 <hr />
 <div class="row text-right">
   <div class="col">
     <button class="btn btn-danger" routerLink="/employees">
-      <i class="fa fa-arrow-left"></i> Regresar
+      <i class="fa fa-arrow-left"></i> Back
     </button>
   </div>
 </div>
@@ -22,7 +22,7 @@
           name="id"
           disabled="disabled"
         />
-        <small class="for-text text muted">Este campo es autogenerado</small>
+        <small class="for-text text muted"> This field is self generated</small>
       </div>
 
       <div class="form-group">
@@ -30,7 +30,7 @@
         <input
           type="text"
           class="form-control"
-          placeholder="Nombre del empleado"
+          placeholder="Name of employee"
           [(ngModel)]="employee.name"
           name="name"
           required
@@ -42,7 +42,7 @@
         <input
           type="text"
           class="form-control"
-          placeholder="Fecha de nacimiento"
+          placeholder="Birthdate"
           [(ngModel)]="employee.birthdate"
           name="birthdate"
           required

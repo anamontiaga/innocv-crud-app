@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { EmployeeModel } from "../models/employee.model";
-import { map } from "rxjs/operators";
+import { map, delay } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
@@ -29,5 +29,28 @@ export class EmployeesService {
       `${this.url}/employees/${employee.id}.json`,
       employeeTemp
     );
+  }
+  borrarEmployee(id: string) {
+    return this.http.delete(`${this.url}/employees/${id}.json`);
+  }
+
+  getEmployee(id: string) {
+    return this.http.get(`${this.url}/employees/${id}.json`);
+  }
+
+  getEmployees() {
+    return this.http
+      .get(`${this.url}/emloyees.json`)
+      .pipe(map(this.createEmployeesArray), delay(0));
+  }
+  private createEmployeesArray(employeesObj: object) {
+    const employees: EmployeeModel[] = [];
+
+    Object.keys(employeesObj).forEach(key => {
+      const employee: EmployeeModel = employeesObj[key];
+      employee.id = key;
+      employees.push(employee);
+    });
+    return employees;
   }
 }
