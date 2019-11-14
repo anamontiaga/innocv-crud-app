@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from "./app.component";
 import { EmployeeComponent } from "./pages/employee/employee.component";
@@ -10,7 +11,7 @@ import { EmployeesComponent } from "./pages/employees/employees.component";
 
 @NgModule({
   declarations: [AppComponent, EmployeeComponent, EmployeesComponent],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent]
 })

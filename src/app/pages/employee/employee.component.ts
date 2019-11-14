@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { EmployeeModel } from "src/app/models/employee.model";
 import { NgForm } from "@angular/forms";
+import { EmployeesService } from "src/app/services/employees.service";
 
 @Component({
   selector: "app-employee",
@@ -10,7 +11,7 @@ import { NgForm } from "@angular/forms";
 export class EmployeeComponent implements OnInit {
   employee = new EmployeeModel();
 
-  constructor() {}
+  constructor(private employeesService: EmployeesService) {}
 
   ngOnInit() {}
 
@@ -19,7 +20,9 @@ export class EmployeeComponent implements OnInit {
       console.log("Formulario no válido");
       return;
     }
-    console.log(form);
-    console.log(this.employee);
+
+    this.employeesService.createEmployee(this.employee).subscribe(resp => {
+      console.log(resp);
+    });
   }
 }
