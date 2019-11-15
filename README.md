@@ -1,4 +1,4 @@
-# INNOVC
+# INNOCV
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.12. and Bootstrap 4 for INNOCV as UX Exercise.
 
