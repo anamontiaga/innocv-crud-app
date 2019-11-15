@@ -10,7 +10,7 @@
 </div>
 
 <table
-  *ngIf="!cargando && employees.length > 0"
+  *ngIf="!loading && employees.length > 0"
   class="table mt-3 animated fadeIn faster animated fadeIn faster"
 >
   <thead class="thead-dark">
@@ -18,13 +18,14 @@
       <th scope="col">#</th>
       <th scope="col">Name</th>
       <th scope="col">Birthdate</th>
+      <th scope="col">Edit</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let employee of employees; let i = index">
-      <th scope="row">{{ i + 1 }}</th>
-      <td>{{ employee.name }}</td>
-      <td>{{ employee.birthdate }}</td>
+      <th scope="row" class="employee-index--text">{{ i + 1 }}</th>
+      <td class="employee-name--text">{{ employee.name }}</td>
+      <td class="employee-bithdate--text">{{ employee.birthdate }}</td>
       <td>
         <button
           class="btn btn-info mr-1"
@@ -33,7 +34,7 @@
           <i class="fa fa-pen"></i>
         </button>
 
-        <button class="btn btn-danger" (click)="borrarEmployee(employee, i)">
+        <button class="btn btn-danger" (click)="deleteEmployee(employee, i)">
           <i class="fa fa-trash"></i>
         </button>
       </td>
@@ -42,7 +43,7 @@
 </table>
 
 <div
-  *ngIf="!cargando && employees.length === 0"
+  *ngIf="!loading && employees.length === 0"
   class="alert alert-warning text-center mt-3 animated fadeIn faster"
 >
   <h4 class="alert-heading">No records</h4>
@@ -52,7 +53,7 @@
 </div>
 
 <div
-  *ngIf="cargando"
+  *ngIf="loading"
   class="alert alert-info text-center mt-3 animated fadeIn faster"
 >
   <h4 class="alert-heading">Loading</h4>

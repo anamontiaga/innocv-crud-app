@@ -31,9 +31,8 @@ export class EmployeeComponent implements OnInit {
     }
   }
 
-  guardar(form: NgForm) {
+  save(form: NgForm) {
     if (form.invalid) {
-      console.log("Formulario no válido");
       return;
     }
 

@@ -30,7 +30,7 @@ export class EmployeesService {
       employeeTemp
     );
   }
-  borrarEmployee(id: string) {
+  deleteEmployee(id: string) {
     return this.http.delete(`${this.url}/employees/${id}.json`);
   }
 
@@ -40,13 +40,11 @@ export class EmployeesService {
 
   getEmployees() {
     return this.http
-      .get(`${this.url}/emloyees.json`)
+      .get(`${this.url}/employees.json`)
       .pipe(map(this.createEmployeesArray), delay(0));
   }
   private createEmployeesArray(employeesObj: object) {
     const employees: EmployeeModel[] = [];
-
-    console.log(employeesObj);
 
     Object.keys(employeesObj).forEach(key => {
       const employee: EmployeeModel = employeesObj[key];

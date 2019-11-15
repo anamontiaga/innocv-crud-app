@@ -1,4 +1,4 @@
-<h1>Employee <small>Name of employee</small></h1>
+<h1>Employee</h1>
 
 <hr />
 <div class="row text-right">
@@ -11,7 +11,7 @@
 
 <div class="row animated fadeIn slower">
   <div class="col">
-    <form (ngSubmit)="guardar(f)" #f="ngForm">
+    <form (ngSubmit)="save(f)" #f="ngForm">
       <div class="form-group">
         <label>Firebase ID</label>
         <input
@@ -51,7 +51,7 @@
 
       <hr />
       <div class="form-group text-center">
-        <button type="submit" class="btn btn-dark w-25">
+        <button type="submit" class="btn btn-dark w-45">
           <i class="fa fa-save"></i> Guardar
         </button>
       </div>

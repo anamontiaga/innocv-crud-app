@@ -10,18 +10,18 @@ import Swal from "sweetalert2";
 })
 export class EmployeesComponent implements OnInit {
   employees: EmployeeModel[] = [];
-  cargando = false;
+  loading = false;
 
   constructor(private employeesService: EmployeesService) {}
 
   ngOnInit() {
-    this.cargando = true;
+    this.loading = true;
     this.employeesService.getEmployees().subscribe(resp => {
       this.employees = resp;
-      this.cargando = false;
+      this.loading = false;
     });
   }
-  borrarEmployee(employee: EmployeeModel, i: number) {
+  deleteEmployee(employee: EmployeeModel, i: number) {
     Swal.fire({
       title: "Sure?",
       text: `Are you sure you want delete ${employee.name}`,
@@ -31,7 +31,7 @@ export class EmployeesComponent implements OnInit {
     }).then(resp => {
       if (resp.value) {
         this.employees.splice(i, 1);
-        this.employeesService.borrarEmployee(employee.id).subscribe();
+        this.employeesService.deleteEmployee(employee.id).subscribe();
       }
     });
   }

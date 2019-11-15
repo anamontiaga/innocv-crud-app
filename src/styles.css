@@ -6,6 +6,20 @@ body {
 }
 
 h1,
-label {
+label,
+.employee-index--text,
+.employee-bithdate--text,
+.employee-name--text {
   color: #ffffff;
+}
+
+@media all and (min-width: 768px) {
+  .employee-index--text,
+  .employee-bithdate--text,
+  .employee-name--text {
+    font-size: 18px;
+  }
+}
+
+@media all and (min-width: 1200px) {
 }
