@@ -46,6 +46,8 @@ export class EmployeesService {
   private createEmployeesArray(employeesObj: object) {
     const employees: EmployeeModel[] = [];
 
+    console.log(employeesObj);
+
     Object.keys(employeesObj).forEach(key => {
       const employee: EmployeeModel = employeesObj[key];
       employee.id = key;
