@@ -28,13 +28,13 @@
       <td class="employee-bithdate--text">{{ employee.birthdate }}</td>
       <td>
         <button
-          class="btn btn-info mr-1"
+          class="btn btn-light mr-1"
           [routerLink]="['/employee', employee.id]"
         >
           <i class="fa fa-pen"></i>
         </button>
 
-        <button class="btn btn-danger" (click)="deleteEmployee(employee, i)">
+        <button class="btn btn-light" (click)="deleteEmployee(employee, i)">
           <i class="fa fa-trash"></i>
         </button>
       </td>
