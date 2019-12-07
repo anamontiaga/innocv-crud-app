@@ -8,11 +8,7 @@ The backend has been developed with Firebase.
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Mobile Mockup
-![Landing](https://github.com/anamontiaga/innocv-crud-app/blob/master/mockup/employeeAdd.png)
-![Editor](https://github.com/anamontiaga/innocv-crud-app/blob/master/mockup/employeesList.png)
-
-
-
+## DEMO
+![Demo](http://g.recordit.co/kgkozzQbAO.gif)
 
 Please support this project by simply putting a Github star ⭐. 🙏 Thanks
